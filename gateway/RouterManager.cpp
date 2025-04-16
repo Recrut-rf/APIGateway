@@ -11,12 +11,17 @@ void RouterManager::addRoute(const std::string &path,
                              const drogon::HttpMethod &method,
                              std::function<void (const drogon::HttpRequestPtr &, std::function<void (const drogon::HttpResponsePtr &)> &&)> handler)
 {
-    drogon::app().registerHandler(
+    using namespace drogon;
+    app().registerHandler(
                 path,
                 method,
-                [handler = std::move(handler)](const drogon::HttpRequestPtr& req,
-                std::function<void(const drogon::HttpResponsePtr&)>&& callback) {
+                [handler = std::move(handler)](const HttpRequestPtr& req,
+                std::function<void(const HttpResponsePtr&)>&& callback)
+    {
         handler(req, std::move(callback));
-    });
+    },
+    {},
+    "RouterManager"
+    );
 }
 
