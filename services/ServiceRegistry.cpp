@@ -25,6 +25,6 @@ void ServiceRegistry::loadServicesConfig() {
 
 }
 
-void initializeServiceConnections() {
+void ServiceRegistry::initializeServiceConnections() {
 
 }
