@@ -1,0 +1,75 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microservices Demo</title>
+    <script>
+        async function createUser() {
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/api/users', {
+                    method: 'POST',
+                    headers:
+					{
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email })
+                });
+                const data = await response.json();
+                alert('User created with ID: ' + data.id);
+            } catch (error) {
+                alert('Error creating user');
+            }
+        }
+
+        async function deleteUser() {
+            const userId = document.getElementById('userId').value;
+
+            try {
+                await fetch(`http://localhost:8080/api/users/${userId}`, {
+                    method: 'DELETE'
+                });
+                alert('User deleted');
+            } catch (error) {
+                alert('Error deleting user');
+            }
+        }
+
+        async function createOrder() {
+            const userId = document.getElementById('orderUserId').value;
+            const items = document.getElementById('orderItems').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/api/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ user_id: parseInt(userId), items })
+                });
+                const data = await response.json();
+                alert('Order created with ID: ' + data.id);
+            } catch (error) {
+                alert('Error creating order');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Create User</h2>
+    <input type="text" id="userName" placeholder="Name">
+    <input type="email" id="userEmail" placeholder="Email">
+    <button onclick="createUser()">Create User</button>
+
+    <h2>Delete User</h2>
+    <input type="number" id="userId" placeholder="User ID">
+    <button onclick="deleteUser()">Delete User</button>
+
+    <h2>Create Order</h2>
+    <input type="number" id="orderUserId" placeholder="User ID">
+    <input type="text" id="orderItems" placeholder="Items">
+    <button onclick="createOrder()">Create Order</button>
+</body>
+</html>
