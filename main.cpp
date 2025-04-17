@@ -24,17 +24,15 @@ int main() {
 
     // Регистрация middleware
     auto &router = RouterManager::getInstance();
-//    router.registerMiddleware<AuthMiddleware>();
-//    router.registerMiddleware<RateLimiter>();
 
     // Добавляем маршруты с нужными фильтрами
-        router.addRoute("/secure", drogon::Get,
-            [](const drogon::HttpRequestPtr &req,
-               std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
-                // Обработчик
-            },
-            {std::make_shared<AuthMiddleware>(), std::make_shared<RateLimiter>()}
-        );
+    router.addRoute("/secure", drogon::Get,
+                    [](const drogon::HttpRequestPtr &req,
+                    std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+        // Обработчик
+    },
+    {std::make_shared<AuthMiddleware>(), std::make_shared<RateLimiter>()}
+    );
 
     // Запуск сервера
     drogon::app().run();

@@ -5,21 +5,6 @@
 #include <memory>
 #include <json/json.h>
 
-//struct Config {
-//    static const std::string DB_HOST;
-//    static const std::string DB_PORT;
-//    static const std::string DB_NAME;
-//    static const std::string DB_USER;
-//    static const std::string DB_PASSWORD;
-
-//    // Другие константы конфигурации
-//    static const int SERVER_PORT;
-//    static const int THREAD_NUM;
-
-//    // Можно добавить методы для загрузки конфигурации
-//    static void loadConfig(const std::string& configFile);
-//};
-
 class Config {
 public:
     static Config& getInstance() {
