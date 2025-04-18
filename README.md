@@ -4,3 +4,5 @@ Frontend Service можно запустить с помощью простог�
 ```bash
 python3 -m http.server 8083
 ```
+
+Drogon 1.9.10 
