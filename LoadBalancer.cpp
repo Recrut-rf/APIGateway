@@ -9,7 +9,8 @@ void LoadBalancer::addEndpoint(const std::string &endpoint)
 std::string LoadBalancer::getNextEndpoint()
 {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (endpoints_.empty()) {
+    if (endpoints_.empty())
+    {
         throw std::runtime_error("No endpoints available");
     }
 

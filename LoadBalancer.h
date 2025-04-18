@@ -5,7 +5,8 @@
 #include <mutex>
 #include <vector>
 
-class LoadBalancer {
+class LoadBalancer
+{
 public:
     void addEndpoint(const std::string& endpoint);
     std::string getNextEndpoint();

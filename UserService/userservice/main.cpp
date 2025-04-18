@@ -17,8 +17,13 @@ void createUser(const HttpRequestPtr& req, std::function<void(const HttpResponse
     dbClient->execSqlAsync(
         "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id",
         [callback](const drogon::orm::Result& result) {
-            auto resp = HttpResponse::newHttpJsonResponse(result[0].toJson());
-            callback(resp);
+//            auto resp = HttpResponse::newHttpJsonResponse(result[0].toJson());
+//            callback(resp);
+        Json::Value ret;
+        ret["id"] = result[0]["id"].as<int>(); // Предполагая, что возвращается столбец 'id'
+
+        auto resp = HttpResponse::newHttpJsonResponse(ret);
+        callback(resp);
         },
         [callback](const drogon::orm::DrogonDbException& e) {
             auto resp = HttpResponse::newHttpResponse();

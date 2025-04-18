@@ -3,7 +3,8 @@
 
 bool JWTValidator::validate(const std::string &token)
 {
-    try {
+    try
+    {
         // Здесь ваш секретный ключ для проверки JWT
         const std::string secret = "your-secret-key";
 
@@ -17,7 +18,8 @@ bool JWTValidator::validate(const std::string &token)
         verifier.verify(decoded);
 
         return true;
-    } catch (const std::exception& e) {
+    } catch (const std::exception& e)
+    {
         std::cerr << "JWT validation failed: " << e.what() << std::endl;
         return false;
     }

@@ -7,7 +7,8 @@ void ProxyHandler::handleRequest(const drogon::HttpRequestPtr &req,
                                  const std::string &path)
 {
     auto client = ServiceRegistry::getInstance().getServiceClient(serviceName);
-    if (!client) {
+    if (!client)
+    {
         auto resp = drogon::HttpResponse::newHttpResponse();
         resp->setStatusCode(drogon::k503ServiceUnavailable);
         callback(resp);
@@ -19,13 +20,16 @@ void ProxyHandler::handleRequest(const drogon::HttpRequestPtr &req,
     request->setPath(path);
 
     // Копирование заголовков
-    for (auto& header : req->headers()) {
+    for (auto& header : req->headers())
+    {
         request->addHeader(header.first, header.second);
     }
 
     // Отправка запроса
-    client->sendRequest(request, [callback](drogon::ReqResult result, const drogon::HttpResponsePtr& response) {
-        if (result != drogon::ReqResult::Ok) {
+    client->sendRequest(request, [callback](drogon::ReqResult result, const drogon::HttpResponsePtr& response)
+    {
+        if (result != drogon::ReqResult::Ok)
+        {
             auto resp = drogon::HttpResponse::newHttpResponse();
             resp->setStatusCode(drogon::k502BadGateway);
             callback(resp);

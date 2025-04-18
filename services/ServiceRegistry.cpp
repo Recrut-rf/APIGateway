@@ -15,16 +15,19 @@ void ServiceRegistry::init()
 drogon::HttpClientPtr ServiceRegistry::getServiceClient(const std::string &serviceName)
 {
     auto it = serviceClients_.find(serviceName);
-    if (it != serviceClients_.end()) {
+    if (it != serviceClients_.end())
+    {
         return it->second;
     }
     return nullptr;
 }
 
-void ServiceRegistry::loadServicesConfig() {
+void ServiceRegistry::loadServicesConfig()
+{
 
 }
 
-void ServiceRegistry::initializeServiceConnections() {
+void ServiceRegistry::initializeServiceConnections()
+{
 
 }

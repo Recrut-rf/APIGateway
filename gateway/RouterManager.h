@@ -8,7 +8,8 @@
 
 
 // RouterManager.h
-class RouterManager {
+class RouterManager
+{
 public:
     static RouterManager& getInstance();
 

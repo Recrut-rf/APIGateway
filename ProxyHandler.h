@@ -5,7 +5,8 @@
 #include <drogon/HttpRequest.h>
 #include <drogon/HttpResponse.h>
 
-class ProxyHandler {
+class ProxyHandler
+{
 public:
     static void handleRequest(const drogon::HttpRequestPtr& req,
                               std::function<void(const drogon::HttpResponsePtr&)>&& callback,

@@ -5,7 +5,8 @@
 #include <string>
 #include <jwt-cpp/jwt.h>
 
-class JWTValidator {
+class JWTValidator
+{
 public:
     static bool validate(const std::string& token);
 };

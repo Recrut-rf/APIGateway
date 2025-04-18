@@ -7,20 +7,24 @@ void AuthMiddleware::doFilter(const drogon::HttpRequestPtr &req,
 {
     // Проверка JWT токена
     auto auth = req->getHeader("Authorization");
-    if (auth.empty()) {
+    if (auth.empty())
+    {
         auto resp = drogon::HttpResponse::newHttpResponse();
         resp->setStatusCode(drogon::k401Unauthorized);
         fcb(resp);
         return;
     }
 
-    try {
+    try
+    {
         auto token = auth.substr(7); // Remove "Bearer "
-        if (JWTValidator::validate(token)) {
+        if (JWTValidator::validate(token))
+        {
             fccb();
             return;
         }
-    } catch (const std::exception& e) {
+    } catch (const std::exception& e)
+    {
         // Обработка ошибок
     }
 

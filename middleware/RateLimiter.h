@@ -6,7 +6,8 @@
 #include <drogon/HttpFilter.h>
 #include <drogon/HttpTypes.h>
 
-class RateLimiter : public drogon::HttpFilter<RateLimiter> {
+class RateLimiter : public drogon::HttpFilter<RateLimiter>
+{
 public:
     void doFilter(const drogon::HttpRequestPtr& req,
                   drogon::FilterCallback&& fcb,

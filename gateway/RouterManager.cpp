@@ -30,8 +30,10 @@ void RouterManager::addRoute(const std::string& path,
                 // Функция для выполнения цепочки фильтров
                 std::function<void(size_t)> applyFilters;
 
-                applyFilters = [&, req, callback = std::move(callback)](size_t index) mutable {
-            if (index >= filters.size()) {
+                applyFilters = [&, req, callback = std::move(callback)](size_t index) mutable
+        {
+            if (index >= filters.size())
+            {
                 // Все фильтры пройдены - вызываем основной обработчик
                 handler(req, std::move(callback));
                 return;
@@ -40,11 +42,13 @@ void RouterManager::addRoute(const std::string& path,
             // Применяем текущий фильтр
             filters[index]->doFilter(
                         req,
-                        [callback](const HttpResponsePtr& resp) {
+                        [callback](const HttpResponsePtr& resp)
+            {
                 // Обработка отказа фильтра
                 callback(resp);
             },
-            [&, index](auto&&...) {
+            [&, index](auto&&...)
+            {
                 // Фильтр passed - переходим к следующему
                 applyFilters(index + 1);
             }

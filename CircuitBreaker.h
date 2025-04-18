@@ -5,9 +5,11 @@
 #include <mutex>
 
 // CircuitBreaker.h
-class CircuitBreaker {
+class CircuitBreaker
+{
 public:
-    enum class State {
+    enum class State
+    {
         CLOSED,
         OPEN,
         HALF_OPEN

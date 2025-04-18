@@ -5,7 +5,8 @@
 #include <string>
 #include <drogon/HttpClient.h>
 
-class ServiceRegistry {
+class ServiceRegistry
+{
 public:
     static ServiceRegistry& getInstance();
 
